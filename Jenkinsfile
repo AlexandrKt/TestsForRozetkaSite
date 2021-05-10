@@ -1,7 +1,7 @@
 pipeline{
   agent any
   parameters{
-    choice(name: 'Version', choises['1.1', '1.2', '1.3'], description: '')
+    choice(name: 'Version', choices['1.1', '1.2', '1.3'], description: '')
     booleanParam(name: 'executeTest', defaultValue: true, description: '')
   }
   environment{
