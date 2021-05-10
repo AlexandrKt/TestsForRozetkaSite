@@ -9,10 +9,21 @@ pipeline{
     SERVER_CREDENTIALS=credentials('server-credentials')
   }
   stages{
+    stage("init"){
+      steps{
+        script{
+        gv=load "script.groovy"
+        }
+      }
+    }
+    
     stage("build"){
       steps{
         echo 'Building the application...'
         echo "Building version ${NEW_VERSION}"
+        script{
+        gv.buildApp()
+        }
       }
     }
     stage("test"){
@@ -20,11 +31,18 @@ pipeline{
         expression{params.executeTest}
       }
       steps{
+        script{
+        gv.testingApp()
+        }
         echo 'Testing the application...'
       }
     }
     stage("deploy"){
       steps{
+        script{
+        gv.deployApp
+        }
+        
         echo 'Deploying the application...'
         echo "Deploying with ${SERVER_CREDENTIALS}"
         echo "Deploying version ${params.Version}"
