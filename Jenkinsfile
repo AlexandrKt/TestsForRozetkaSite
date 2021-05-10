@@ -1,6 +1,6 @@
 pipeline{
   agent any
-  enviroment{
+  environment{
     NEW_VERSION = '1.0'
     SERVER_CREDENTIALS=credentials('server-credentials')
   }
