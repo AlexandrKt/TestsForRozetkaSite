@@ -20,10 +20,6 @@ pipeline{
       steps{
         echo 'Deploying the application...'
         echo "Deploying with ${SERVER_CREDENTIALS}"
-        withCredentials([
-          usernamePassword(credentials: server-credentials, usernameVariable: USER, passvordVariable: PWD)
-        ]){sh "some script ${USER} ${PWD}"}
       }
     }
   }
-}
